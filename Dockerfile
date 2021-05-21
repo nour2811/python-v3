@@ -1,11 +1,8 @@
 FROM python:3.8
-Run mkdir /app
-RUN tar -xzf projet_python.tar.gz
-COPY requirements.txt ./
+RUN mkdir -p /app_python
+COPY application.tar /app_python
+WORKDIR /app_python
+RUN tar -xvf application.tar
+WORKDIR /app_python/application
 RUN pip install --no-cache-dir -r requirements.txt
-
-
-COPY  app.py /app
-WORKDIR /app
-
 CMD python app.py
