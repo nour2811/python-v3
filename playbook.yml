@@ -10,12 +10,12 @@
     - debug:
         var=result_install
 
-    - name: Installation de python3
-      shell: amazon-linux-extras install -y python3.8
-      register: result_install
+#    - name: Installation de python3
+ #     shell: amazon-linux-extras install -y python3.8
+ #     register: result_install
 
-    - debug:
-        var=result_install
+  #  - debug:
+   #     var=result_install
 
     - name: Création du dossier /app_python sur la machine distante
       file:
@@ -45,7 +45,7 @@
 
 
     - name: On execute le contenur de l'image docker formation/pytest:1.0
-      shell: docker run --rm --name conteneur_app formation/pytest:1.0
+      shell: docker run -p 5000:5000 -d --rm --name conteneur_app formation/pytest:1.0
       #On prend tout ce qui est du stdout et on le met dans la variable result
       register: result
     - debug:
